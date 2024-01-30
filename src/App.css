@@ -1,38 +1,275 @@
 .App {
+  overflow: auto;
+}
+
+.landing {
+  width: calc(100vw - 4rem);
+  height: calc(100vh - 4rem);
+  background-image: linear-gradient(153deg, #712bda, #a45deb 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  overflow: hidden;
+}
+.landing .landing__logo {
+  width: 20%;
+  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.result {
+  background: #fcfafc;
+  padding-top: 3.5rem;
+}
+
+.result .result__navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 1rem 2rem 1rem;
+  box-shadow: 0 0 6px 0 rgba(148, 77, 230, 0.75);
+  background-image: linear-gradient(100deg, #712bda, #a45deb 100%);
+  clip-path: ellipse(80% 70% at 49% 25%);
+  position: fixed;
+  width: calc(100% - 2rem);
+  top: 0;
+  z-index: 999;
+}
+
+.result .result__navbar .ic-logo {
+  width: 20%;
+  object-fit: contain;
+}
+
+.result .result-label {
   text-align: center;
+  font-size: 0.875rem;
+  margin-top: 3.5rem;
+}
+.result .result-label strong {
+  color: #7b34dd;
+  font-size: 1.125rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.result .result-list {
+  padding: 1rem;
+}
+.result .result-list .react-loading-skeleton {
+  margin-bottom: 1rem;
+}
+.result .result-list ul {
+  padding-left: 0;
+  list-style: none;
+}
+.result .result-list .result-list__item {
+  display: flex;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.result .result-list .result-list__item p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.result .result-list .result-list__item .col-left {
+  flex: 0.4;
+}
+.result .result-list .result-list__item .col-right {
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.result .result-list .result-list__item .col-left video {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.result .result-list .result-list__item .col-right .name {
+  font-size: 11px;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+.result .result-list .result-list__item .col-right .title {
+  font-size: 1rem;
+  color: #334155;
+  font-weight: bold;
+}
+.result .result-list .result-list__item .col-right .genre-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.result .result-list .result-list__item .col-right .genre {
+  background: #10b981;
+  color: #fff;
+  padding: 5px 13px 4px;
+  border-radius: 1.5rem;
+  font-size: 10px;
+}
+.result .result-list .result-list__item .col-right .price {
+  display: flex;
+  align-items: center;
+  color: #f5b014;
+  font-size: 12px;
+  font-weight: bold;
+  gap: 0.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.video {
+  position: relative;
+}
+
+.video:before {
+  display: block;
+  content: " ";
+  width: 100%;
+  padding-top: 100%;
+}
+
+.video > .outer-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.video > .outer-content > .inner-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.popup-search {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(28, 28, 45, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+}
+.popup-search .popup-search__close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.popup-search h2 {
+  color: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.popup-search .popup-search__input-search,
+.popup-search .popup-search__input-button,
+.landing .landing__input-search,
+.landing .landing__input-button {
+  border-radius: 2rem;
+  padding: 1rem;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+}
+
+.popup-search .popup-search__input-search,
+.landing .landing__input-search {
+  margin-bottom: 1rem;
+}
+.popup-search .popup-search__input-search::placeholder,
+.landing .landing__input-search::placeholder {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.popup-search .popup-search__input-button,
+.landing .landing__input-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.popup-search .popup-search__input-button {
+  width: calc(100% - 2rem);
+  background-image: linear-gradient(98deg, #712bda, #a45deb);
+}
+.popup-search .popup-search__input-search {
+  width: calc(100% - 4rem);
+}
+
+@media screen and (min-width: 576px) {
+  .landing {
+    align-items: center;
+    padding-bottom: 3.5rem;
+    height: calc(100vh - 5.5rem);
   }
-  to {
-    transform: rotate(360deg);
+  .landing .landing__logo {
+    width: 10%;
   }
+  .landing .landing__input-button {
+    width: 30%;
+  }
+  .landing .landing__input-search {
+    width: 27.5%;
+  }
+  .result .result-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .result .result-list .result-list__loading {
+    width: 50%;
+  }
+  .result .result-list ul {
+    width: 50%;
+  }
+  .result .result-list .result-list__item .col-left {
+    flex: 1;
+  }
+  .result .result-list .result-list__item .col-right {
+    flex: 2;
+  }
+  .result .result-list .result-list__item .col-right .name {
+    font-size: 18px;
+    color: #334155;
+    margin-bottom: 0.5rem;
+  }
+  .result .result-list .result-list__item .col-right .title {
+    font-size: 24px;
+    color: #334155;
+    font-weight: bold;
+  }
+  .result .result-list .result-list__item .col-right .genre,
+  .result .result-list .result-list__item .col-right .price {
+    font-size: 18px;
+  }
+  .popup-search .popup-search__input-button {
+    width: calc(30%);
+  }
+  .popup-search .popup-search__input-search {
+    width: calc(30% - 2rem);
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
 }
